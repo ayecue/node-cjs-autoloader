@@ -20,8 +20,10 @@ exports.READ = {
 	FLAG: 'r'
 };
 
+console.log(process.env.NODE_PATH);
+
 exports.PACKAGES = {
-	HOME: process.env.NODE_PATH,
+	HOME: process.env.NODE_PATH || '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript',
 	FILE_NAME: 'package.json',
 	DIR_NAME: 'node_modules'
 };
