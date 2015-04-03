@@ -240,12 +240,12 @@ module.exports = (function(
 			var me = this;
 
 			me.walk(sourceModule,targetModule,function(module){
-				if (!module) {
-					return me.doThrow(CONSTANTS.ERRORS.AUTOLOADER_GET_FILE + targetModule);
+				if (module) {
+					module = path.normalize(module);
+					module = Manipulator.extension(module);
+				} else {
+					me.doThrow(CONSTANTS.ERRORS.AUTOLOADER_GET_FILE + targetModule);
 				}
-
-				module = path.normalize(module);
-				module = Manipulator.extension(module);
 
 				done(module);
 			});
