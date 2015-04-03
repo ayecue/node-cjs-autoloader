@@ -137,10 +137,12 @@ module.exports = (function(
 
 			sourceDirectory = path.dirname(sourceDirectory);
 			sourceDirectory = path.resolve(sourceDirectory);
+			list.push(sourceDirectory);
 
-			for (; !Manipulator.isEmpty(sourceDirectory); sourceDirectory = me.walkup(sourceDirectory)) {
+			do {
+				sourceDirectory = me.walkup(sourceDirectory);
 				list.push(sourceDirectory);
-			}
+			} while(!Manipulator.isEmpty(sourceDirectory));
 
 			return list.concat(me.self.defaultDirectories,me.lookupDirectories);
 		},
