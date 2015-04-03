@@ -1,7 +1,7 @@
 # node-cjs-autoloader v0.1.0
 [![Build Status](https://travis-ci.org/ayecue/node-cjs-autoloader.png?branch=master)](https://travis-ci.org/ayecue/node-cjs-autoloader)
 
-> Return the path of a required script.
+> Search the path of a required script in a CommonJS project.
 
 
 ## Getting Started
