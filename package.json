@@ -1,0 +1,39 @@
+{
+    "name": "node-cjs-autoloader",
+    "version": "0.1.0",
+    "description": "CommonJS file autoloader.",
+    "main": "src/Autoloader.js",
+    "homepage": "https://github.com/ayecue/node-cjs-autoloader",
+    "scripts": {
+        "test": "nodeunit ./test/autoloader_test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ayecue/node-cjs-autoloader.git"
+    },
+    "author": {
+        "name": "ayecue",
+        "email": "soerenwehmeier@googlemail.com"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/ayecue/node-cjs-autoloader/blob/master/LICENSE-MIT"
+    }],
+    "dependencies": {
+        "commander": "^2.6.0",
+        "colors": "^1.0.3",
+        "JSON2": "~0.1.0",
+        "async": "~0.9.0"
+    },
+    "bugs": {
+        "url": "https://github.com/ayecue/node-cjs-autoloader/issues"
+    },
+    "bin": {
+        "node-cjs-autoloader": "bin/autoloader"
+    },
+    "directories": {},
+    "keywords": [
+        "commonjs",
+        "autoloader"
+    ]
+}

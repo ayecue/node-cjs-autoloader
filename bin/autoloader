@@ -1,0 +1,46 @@
+#! /usr/bin/env node
+// -*- js -*-
+
+"use strict";
+
+var fs = require('fs'),
+	colors = require('colors'),
+	program = require('commander'),
+	Autoloader = require('../src/Autoloader.js');
+ 
+program
+	.option('-t, --to <path>', 'path to target file'.grey.bold)
+	.option('-f, --from <path>', 'path to source file'.grey.italic)
+	.option('-s, --sync', '(optional) execute synchronous'.grey.italic)
+	.parse(process.argv);
+
+var autoloaderInstance = new Autoloader({
+		dothrow: true,
+		onNewPackage: function(autoloader,pkg,nodeModule,json,moduleName,currDirectory){
+			console.log(('Successful reading package: ' + pkg).green.italic);
+		},
+		onNewDirectory: function(autoloader,directory,sourceModule,targetModule,directories){
+			console.log(('Lookup directory: ' + directory).green.italic);
+		}
+	}),
+	from = program.from || '/',
+	to = program.to,
+	time,
+	absolutePath;
+
+try {
+	if (program.sync) {
+		time = new Date().getTime();
+		absolutePath = autoloaderInstance.getSync(from,to);
+		console.log(('Found in ' + (new Date().getTime() - time) + 'ms').green.italic);
+		console.log(absolutePath.green.bold);
+	} else {
+		time = new Date().getTime();
+		autoloaderInstance.get(from,to,function(absolutePath){
+			console.log(('Found in ' + (new Date().getTime() - time) +'ms').green.italic);
+			console.log(absolutePath.green.bold);
+		});
+	}
+} catch(e) {
+	console.log(e.message.red.bold);
+}
